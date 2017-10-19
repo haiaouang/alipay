@@ -2,7 +2,7 @@
 [![Latest Stable Version](http://www.maiguoer.com/haiaouang/alipay/stable.svg)](https://packagist.org/packages/haiaouang/alipay)
 [![License](http://www.maiguoer.com/haiaouang/alipay/license.svg)](https://packagist.org/packages/haiaouang/alipay)
 
-laravel小米推送包
+laravel支付包手机支付包
 
 ## 安装
 
@@ -29,7 +29,7 @@ laravel小米推送包
         /**
          * 添加供应商
          */
-        Hht\Pusher\PusherServiceProvider::class,
+        Hht\Payer\PayerServiceProvider::class,
         /**
          * 添加供应商
          */
@@ -41,98 +41,62 @@ laravel小米推送包
 
 `php artisan vendor:publish`
 
-设置推送信息的参数 config/pushers.php
+设置推送信息的参数 config/payers.php
 
 ## 调用
 
-修改config/pushers.php对应的配置
+修改config/payrs.php对应的配置
 
 ```php
 <?php
 
 return [
+
     'default' => 'alipay',
+
     'launchers' => [
+
         'alipay' => [
-            'driver' => 'alipay',
-            'reg_url' => 'https://api.xmpush.xiaomi.com/v3/message/regid',
-            'alias_url' => 'https://api.xmpush.xiaomi.com/v3/message/alias',
-            'topic_url' => 'https://api.xmpush.xiaomi.com/v3/message/topic',
-            'multi_topic_url' => 'https://api.xmpush.xiaomi.com/v3/message/multi_topic',
-            'all_url' => 'https://api.xmpush.xiaomi.com/v3/message/all',
-            'exist_url' => 'https://api.xmpush.xiaomi.com/v2/schedule_job/exist',
-            'delete_url' => 'https://api.xmpush.xiaomi.com/v2/schedule_job/delete',
+			'driver' => 'alipay',
+			
+			//合作身份者ID，签约账号，以2088开头由16位纯数字组成的字符串
+			'partner' => '',
 
-            'android' => [
-                'bundle_id' => '',
-                'app_id' => '',
-                'app_key' => '',
-                'app_secret' => ''
-            ],
+			//收款支付宝账号，以2088开头由16位纯数字组成的字符串，一般情况下收款账号就是签约账号
+			'seller_id' => '',
 
-            'ios' => [
-                'bundle_id' => '',
-                'app_id' => '',
-                'app_key' => '',
-                'app_secret' => ''
-            ],
-            'prefix' => env( 'MIPUSH_PREFIX' , 'test_' )
+			//商户的私钥,此处填写原始私钥去头去尾
+			'private_key' => '',
+
+			//支付宝的公钥
+			'alipay_public_key' => '',
+
+			//签名方式
+			'sign_type' => 'RSA',
+
+			//字符编码格式 目前支持 gbk 或 utf-8
+			'input_charset' => 'utf-8',
+
+			// 支付类型 ，无需修改
+			'payment_type' => '1',
+
+			// 产品类型，无需修改
+			'service' => 'create_direct_pay_by_user',
+
+			// 产品类型，无需修改
+			'sdk_service' => 'mobile.securitypay.pay',
+
+			// 支付超时时间
+			'payment_time' => '30m',
+	
         ],
+
     ],
+
 ];
-```
-
-创建message(消息发送只能发给message对应的端)
-
-```php
-    //安卓message -- 具体参数配置清查看小米推送文档
-    $message = new \Hht\AliPay\Builder\IOSBuilder();
-    
-    //苹果message -- 具体参数配置清查看小米推送文档
-    $message = new \Hht\AliPay\Builder\Builder();
-```
-
-### 根据别名发送 -- 单个(别名会自动添加配置内的前缀)
-
-```php
-    Push::launcher('alipay')->setAlias('aaa')->send($message);
-```
-
-### 根据别名发送 -- 多个(别名会自动添加配置内的前缀)
-
-```php
-    Push::launcher('alipay')->setAliases('aaa', 'bbb', 'ccc')->send($message);
-    //或
-    Push::launcher('alipay')->setAliases(['aaa', 'bbb', 'ccc'])->send($message);
-```
-
-### 根据id发送 -- 单个
-
-```php
-    Push::launcher('alipay')->setId('aaa')->send($message);
-```
-
-### 根据id发送 -- 多个
-
-```php
-    Push::launcher('alipay')->setIds('aaa', 'bbb', 'ccc')->send($message);
-    //或
-    Push::launcher('alipay')->setIds(['aaa', 'bbb', 'ccc'])->send($message);
-```
-
-### 根据标签发送(标签发会自动添加配置内的前缀)
-
-```php
-    Push::launcher('alipay')->setTopic('aaaa')->send($message);
-```
-
-### 发给所有用户
-
-```php
-    Push::launcher('alipay')->setAll(true)->send($message);
 ```
 
 ## 依赖包
 
 * haiaouang/support : https://github.com/haiaouang/support
-* haiaouang/pusher : https://github.com/haiaouang/pusher
+* haiaouang/payer : https://github.com/haiaouang/payer

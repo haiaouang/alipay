@@ -16,8 +16,8 @@
     ],
     "require": {
         "php": ">=5.5.9",
-	"haiaouang/support": "^1.0.0",
-	"haiaouang/alipay": "^1.0.0"
+	"haiaouang/support": "^1.0.3",
+	"haiaouang/alipay": "^1.0.1"
     },
     "autoload": {
         "psr-4": {
