@@ -20,7 +20,7 @@ laravel支付包手机支付包
 
 安装依赖包 [haiaouang/support](https://github.com/haiaouang/support)
 
-安装依赖包 [haiaouang/pusher](https://github.com/haiaouang/pusher)
+安装依赖包 [haiaouang/payer](https://github.com/haiaouang/payer)
 
 在配置文件中添加 config/app.php
 

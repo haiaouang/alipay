@@ -3,6 +3,7 @@
     "description": "The Hht alipay package.",
     "license": "MIT",
     "homepage": "https://github.com/haiaouang/alipay",
+    "keywords": ["laravel", "pay"],
     "type": "library",
     "support": {
         "issues": "https://github.com/haiaouang/alipay",
@@ -16,8 +17,8 @@
     ],
     "require": {
         "php": ">=5.5.9",
-	"haiaouang/support": "^1.0.3",
-	"haiaouang/alipay": "^1.0.1"
+	"haiaouang/support": "^1.0.5",
+	"haiaouang/payer": "^1.0.2"
     },
     "autoload": {
         "psr-4": {

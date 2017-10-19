@@ -1,7 +1,6 @@
 <?php namespace Hht\AliPay;
 
-use Hht\AliPay\Order\Order;
-use Hht\AliPay\Order\SDKOrder;
+use Hht\Support\Contracts\Order;
 use Hht\AliPay\Config\ConfigAwareTrait;
 use Hht\AliPay\Plugin\PluggableTrait;
 

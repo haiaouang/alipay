@@ -1,8 +1,8 @@
 <?php namespace Hht\AliPay;
 
-use Hht\AliPay\Core\Config;
 use Hht\AliPay\Order\Order;
 use Hht\AliPay\Order\SDKOrder;
+use Hht\AliPay\Core\Config;
 use Hht\AliPay\Core\AlipayCore;
 use Hht\AliPay\Core\AlipayRsa;
 
